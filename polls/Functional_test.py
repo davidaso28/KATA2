@@ -52,4 +52,11 @@ class FunctionalTest(TestCase):
 
         self.assertIn('Juan Daniel Arevalo', span.text)
 
+    def test_verDetalle(self):
+        self.browser.get('http://127.0.0.1:8000/')
+        span=self.browser.find_element(By.XPATH,'//span[text()="Juan Daniel Arevalo"]')
+        span.click()
+        h2=self.browser.find_element(By.XPATH,'//h2[text()="Juan Daniel Arevalo"]')
+
+        self.assertIn('Juan Daniel Arevalo',h2.text)
 
