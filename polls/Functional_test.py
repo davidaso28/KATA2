@@ -67,14 +67,15 @@ class FunctionalTest(TestCase):
         #buscando el boton login
         botonLogin = self.browser.find_element_by_id('id_login')
         botonLogin.click()
+        self.browser.implicitly_wait(10)
         #esperando que la pagina abra
         self.browser.implicitly_wait(10)
-        #llenando datos del
-        usuario = self.browser.find_element_by_id("id_usuario")
+        #llenando datos del usuario creado
+        usuario = self.browser.find_element_by_id("id_username")
         usuario.send_keys('juan645')
-        contrasena = self.browser.find_element_by_id("id_contrasena")
+        contrasena = self.browser.find_element_by_id("id_password")
         contrasena.send_keys('clave123')
-        ingresar = self.browser.find_element_by_id('id_login')
+        ingresar = self.browser.find_element_by_id('id_send')
         ingresar.click()
         #esperando que el inicio abra
         self.browser.implicitly_wait(10)
