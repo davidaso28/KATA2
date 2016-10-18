@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class FunctionalTest(TestCase):
     def setUp(self):
-       self.browser = webdriver.Chrome('C:/Users/dvdtr/Downloads/chromeDriver/chromedriver')
+       self.browser = webdriver.Chrome('D:/Universidad/Procesos Agiles/chromedriver.exe')
 
     def tearDown(self):
         self.browser.quit()
@@ -28,8 +28,7 @@ class FunctionalTest(TestCase):
         experiencia = self.browser.find_element_by_id('id_aniosExperiencia')
         experiencia.send_keys('5')
 
-        self.browser.find_element_by_xpath(
-            "//select[@id='id_tiposDeServicio']/option[text()='Desarrollador Web']").click()
+        self.browser.find_element_by_xpath("//select[@id='id_tiposDeServicio']/option[text()='Desarrollador Web']").click()
         telefono = self.browser.find_element_by_id('id_telefono')
         telefono.send_keys('3173024578')
 
@@ -37,7 +36,7 @@ class FunctionalTest(TestCase):
         correo.send_keys('jd.patino1@uniandes.edu.co')
 
         imagen = self.browser.find_element_by_id('id_imagen')
-        imagen.send_keys('C:\Users\dvdtr\Downloads\d.jpeg')
+        imagen.send_keys('D:/Universidad/Procesos Agiles/desarrollador.jpg')
 
         nombreUsuario = self.browser.find_element_by_id('id_username')
         nombreUsuario.send_keys('juan645')
@@ -81,3 +80,25 @@ class FunctionalTest(TestCase):
         self.browser.implicitly_wait(10)
         respuesta= self.browser.find_element_by_class_name('float-message').text
         self.assertTrue(respuesta.index('SUCCESS: Bienvenido al sistema juan645'))
+
+    #test editar
+    def test_editar(self):
+        self.browser.get('http://localhost:8000')
+        # buscando el boton login
+        botonLogin = self.browser.find_element_by_id('id_login')
+        botonLogin.click()
+        self.browser.implicitly_wait(10)
+        #se realiza login
+        usuario = self.browser.find_element_by_id("id_username")
+        usuario.send_keys('juan645')
+        contrasena = self.browser.find_element_by_id("id_password")
+        contrasena.send_keys('clave123')
+        ingresar = self.browser.find_element_by_id('id_send')
+        ingresar.click()
+        # esperando que la pagina abra
+        self.browser.implicitly_wait(10)
+        linkEditar = self.browser.find_element_by_id('id_editar')
+        linkEditar.click()
+
+
+

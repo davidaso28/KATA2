@@ -86,7 +86,7 @@ def editar_perfil(request,idTrabajador):
         form_trabajador = TrabajadorForm(instance=trabajador)
 
     context = {'form_trabajador': form_trabajador}
-    return render(request, 'polls/editar.html', context)
+    return render(request, 'polls/editar_.html', context)
 
 @csrf_exempt
 def add_comment(request):
