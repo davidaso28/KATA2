@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class FunctionalTest(TestCase):
     def setUp(self):
-       self.browser = webdriver.Chrome('D:/Universidad/Procesos Agiles/chromedriver.exe')
+       self.browser = webdriver.Firefox()
 
     def tearDown(self):
         self.browser.quit()
@@ -95,11 +95,36 @@ class FunctionalTest(TestCase):
         contrasena.send_keys('clave123')
         ingresar = self.browser.find_element_by_id('id_send')
         ingresar.click()
-        # esperando que la pagina abra
+
         self.browser.implicitly_wait(10)
         linkEditar = self.browser.find_element_by_id('id_editar')
         #Se hace click para editar
         linkEditar.click()
 
+        #Edicion de datos
+        self.browser.implicitly_wait(10)
+
+        nombre = self.browser.find_element_by_id('id_nombre')
+        nombre.clear()
+        nombre.send_keys('Chuck')
+
+        apellidos = self.browser.find_element_by_id('id_apellidos')
+        apellidos.clear()
+        apellidos.send_keys('Norris')
+
+        botonGrabar = self.browser.find_element_by_id('id_grabar')
+        botonGrabar.click()
+
+        self.browser.implicitly_wait(10)
+
+        linkEditar = self.browser.find_element_by_id('id_editar')
+        linkEditar.click()
+
+        self.browser.implicitly_wait(10)
+
+        nombre = self.browser.find_element_by_id('id_nombre')
+        self.assertEqual(nombre.get_attribute("value"),'Chuck')
+        apellidos = self.browser.find_element_by_id('id_apellidos')
+        self.assertEqual(apellidos.get_attribute("value"), 'Norris')
 
 
