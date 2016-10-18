@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class FunctionalTest(TestCase):
     def setUp(self):
-       self.browser = webdriver.Firefox()
+       self.browser = webdriver.Chrome("D:/Universidad/Procesos Agiles/chromedriver.exe")
 
     def tearDown(self):
         self.browser.quit()
@@ -139,13 +139,18 @@ class FunctionalTest(TestCase):
         email.send_keys('chuck.norris@google.com')
 
         comentario = self.browser.find_element_by_id('comentario')
-        comentario.clear()
         comentario.send_keys('comentario de prueba')
 
-        botonAgregar = self.browser.find_element(By.XPATH, '')
-        botonAgregar.click()
+        self.browser.implicitly_wait(20)
 
+        linkUsuario = self.browser.find_element_by_id('id_agregarComentario')
+        linkUsuario.click()
 
+        self.browser.implicitly_wait(20)
+
+        for option in self.browser.find_element_by_id('comentarios').find_elements_by_tag_name('h4'):
+            if option.text.index('chuck.norris@google.com'):
+                self.assertTrue(self.browser.find_element_by_id('comentarios').find_elements_by_tag_name('p')[option.text.index])
 
 
 
