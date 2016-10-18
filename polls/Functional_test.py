@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class FunctionalTest(TestCase):
     def setUp(self):
-       self.browser = webdriver.Chrome('D:/Universidad/Procesos Agiles/chromedriver')
+       self.browser = webdriver.Chrome('C:/Users/dvdtr/Downloads/chromeDriver/chromedriver')
 
     def tearDown(self):
         self.browser.quit()
@@ -52,6 +52,7 @@ class FunctionalTest(TestCase):
 
         self.assertIn('Juan Daniel Arevalo', span.text)
 
+    #test  ver el desalle
     def test_verDetalle(self):
         self.browser.get('http://127.0.0.1:8000/')
         span=self.browser.find_element(By.XPATH,'//span[text()="Juan Daniel Arevalo"]')
@@ -60,14 +61,23 @@ class FunctionalTest(TestCase):
 
         self.assertIn('Juan Daniel Arevalo',h2.text)
 
+    #test Login
     def test_login(self):
-        self.browser.get('http://127.0.0.1:8000/')
-        self.browser.implicitly_wait(5)
-        textUserName = self.browser.find_element_by_id("id_username")
-        textUserName.send_keys('pedro456')
-
-        textPassword = self.browser.find_element_by_id("id_password")
-        textPassword.send_keys('clave123')
-
-        botonIngreso = self.browser.find_element_by_id('id_ingreso')
-        botonIngreso.click()
+        self.browser.get('http://localhost:8000')
+        #buscando el boton login
+        botonLogin = self.browser.find_element_by_id('id_login')
+        botonLogin.click()
+        self.browser.implicitly_wait(10)
+        #esperando que la pagina abra
+        self.browser.implicitly_wait(10)
+        #llenando datos del usuario creado
+        usuario = self.browser.find_element_by_id("id_username")
+        usuario.send_keys('juan645')
+        contrasena = self.browser.find_element_by_id("id_password")
+        contrasena.send_keys('clave123')
+        ingresar = self.browser.find_element_by_id('id_send')
+        ingresar.click()
+        #esperando que el inicio abra
+        self.browser.implicitly_wait(10)
+        respuesta= self.browser.find_element_by_class_name('float-message').text
+        self.assertTrue(respuesta.index('SUCCESS: Bienvenido al sistema juan645'))
