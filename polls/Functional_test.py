@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 class FunctionalTest(TestCase):
     def setUp(self):
-       self.browser = webdriver.Chrome('C:/Users/dvdtr/Downloads/chromeDriver/chromedriver')
+       self.browser = webdriver.Chrome('D:/Universidad/Procesos Agiles/chromedriver')
 
     def tearDown(self):
         self.browser.quit()
@@ -60,3 +60,14 @@ class FunctionalTest(TestCase):
 
         self.assertIn('Juan Daniel Arevalo',h2.text)
 
+    def test_login(self):
+        self.browser.get('http://127.0.0.1:8000/')
+        self.browser.implicitly_wait(5)
+        textUserName = self.browser.find_element_by_id("id_username")
+        textUserName.send_keys('pedro456')
+
+        textPassword = self.browser.find_element_by_id("id_password")
+        textPassword.send_keys('clave123')
+
+        botonIngreso = self.browser.find_element_by_id('id_ingreso')
+        botonIngreso.click()
