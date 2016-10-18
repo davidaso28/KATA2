@@ -98,6 +98,7 @@ class FunctionalTest(TestCase):
         # esperando que la pagina abra
         self.browser.implicitly_wait(10)
         linkEditar = self.browser.find_element_by_id('id_editar')
+        #Se hace click para editar
         linkEditar.click()
 
 
