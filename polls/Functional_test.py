@@ -127,4 +127,25 @@ class FunctionalTest(TestCase):
         apellidos = self.browser.find_element_by_id('id_apellidos')
         self.assertEqual(apellidos.get_attribute("value"), 'Norris')
 
+    #test_comentar
+    def test_comentario(self):
+        self.browser.get('http://127.0.0.1:8000/')
+        linkUsuario = self.browser.find_element(By.XPATH, '//span[text()="Chuck Norris"]')
+        linkUsuario.click()
+
+        self.browser.implicitly_wait(10)
+
+        email = self.browser.find_element_by_id('correo')
+        email.send_keys('chuck.norris@google.com')
+
+        comentario = self.browser.find_element_by_id('comentario')
+        comentario.clear()
+        comentario.send_keys('comentario de prueba')
+
+        botonAgregar = self.browser.find_element(By.XPATH, '')
+        botonAgregar.click()
+
+
+
+
 
